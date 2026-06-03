@@ -1,4 +1,10 @@
-# loreroom
+<p align="center">
+  <img src="./assets/logo.svg" alt="loreroom" width="92" height="92" />
+</p>
+
+<h1 align="center">loreroom</h1>
+
+<p align="center"><em>你的 Claude Code Telegram bot——但它記得住。</em></p>
 
 > English → [README.md](./README.md)
 
