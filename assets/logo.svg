@@ -6,8 +6,8 @@
     </linearGradient>
   </defs>
 
-  <!-- the "room": a rounded square that holds everything -->
-  <rect width="512" height="512" rx="120" fill="url(#lr-g)"/>
+  <!-- sharp square tile, full bleed, no rounded corners, no border -->
+  <rect width="512" height="512" fill="url(#lr-g)"/>
 
   <!-- conversation bubble (the kept chat) -->
   <path d="M150 128 H362 a54 54 0 0 1 54 54 V270 a54 54 0 0 1 -54 54 H252 l-58 52 a6 6 0 0 1 -10 -4.5 V324 H150 a54 54 0 0 1 -54 -54 V182 a54 54 0 0 1 54 -54 Z" fill="#ffffff"/>

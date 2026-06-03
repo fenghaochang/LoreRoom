@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./assets/logo.png" alt="LoreRoom" width="96" height="96" />
+  <img src="./assets/logo.svg" alt="LoreRoom" width="96" height="96" />
 </p>
 
 <h1 align="center">LoreRoom</h1>
