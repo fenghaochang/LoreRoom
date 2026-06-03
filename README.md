@@ -1,10 +1,14 @@
 <p align="center">
-  <img src="./assets/logo.svg" alt="LoreRoom" width="92" height="92" />
+  <img src="./assets/logo.png" alt="LoreRoom" width="96" height="96" />
 </p>
 
 <h1 align="center">LoreRoom</h1>
 
 <p align="center"><em>Your Claude Code Telegram bot — but it remembers.</em></p>
+
+<p align="center">
+  <img src="./assets/demo-gemini.png" alt="LoreRoom recalling a past Telegram conversation" width="300" />
+</p>
 
 > 中文版 → [README.zh-TW.md](./README.zh-TW.md)
 
