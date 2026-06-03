@@ -21,10 +21,18 @@ drain(); // on startup
 const timer = setInterval(drain, 20_000); // and continuously while this session is alive
 if (typeof timer.unref === "function") timer.unref();
 
+// Local wall-clock time (the machine running this server = the user's machine),
+// so recalled timestamps match what the user actually saw — not UTC.
+function localTs(sec: number): string {
+  const d = new Date(sec * 1000);
+  const p = (n: number) => String(n).padStart(2, "0");
+  return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())} ${p(d.getHours())}:${p(d.getMinutes())}`;
+}
+
 function fmt(rows: MessageRow[]): string {
   if (rows.length === 0) return "（無符合紀錄）";
   return rows
-    .map((r) => `[${new Date(r.createdAt * 1000).toISOString()}] (${r.role}/${r.sender} @${r.chatId}) ${r.text}`)
+    .map((r) => `[${localTs(r.createdAt)}] (${r.role}/${r.sender} @${r.chatId}) ${r.text}`)
     .join("\n");
 }
 
