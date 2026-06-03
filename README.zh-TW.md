@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="./assets/logo.svg" alt="loreroom" width="92" height="92" />
+  <img src="./assets/logo.svg" alt="LoreRoom" width="92" height="92" />
 </p>
 
-<h1 align="center">loreroom</h1>
+<h1 align="center">LoreRoom</h1>
 
 <p align="center"><em>你的 Claude Code Telegram bot——但它記得住。</em></p>
 
@@ -10,29 +10,29 @@
 
 **一個私密、加密的「房間」，記得你跟 Claude Code Telegram bot 的每一段對話——雙向都記——讓它永不失憶。**
 
-你用手機透過官方 Telegram plugin 跟 Claude Code 聊天，但每個 Claude Code session 都會失憶：一重啟，整段對話就沒了。loreroom 把這段 Telegram 對話的**兩邊**都收進一個**整檔加密**的 SQLite 資料庫，再以可搜尋的記憶交還給 Claude。
+你用手機透過官方 Telegram plugin 跟 Claude Code 聊天，但每個 Claude Code session 都會失憶：一重啟，整段對話就沒了。LoreRoom 把這段 Telegram 對話的**兩邊**都收進一個**整檔加密**的 SQLite 資料庫，再以可搜尋的記憶交還給 Claude。
 
 於是你可以問 bot：
 
 > **你：** 我昨晚叫你做什麼？
-> **Bot：**（搜尋 loreroom）你要我修爬蟲的重試邏輯，然後把 diff 傳給你…
+> **Bot：**（搜尋 LoreRoom）你要我修爬蟲的重試邏輯，然後把 diff 傳給你…
 
 本機優先。零雲端、零額外 API key，完全不碰你的 bot token。
 
 ---
 
-## 為什麼需要 loreroom（以及為什麼它可靠）
+## 為什麼需要 LoreRoom（以及為什麼它可靠）
 
 Claude Code 的 Telegram plugin 是用內部 channel 推播把進站訊息送給 Claude——**不經過任何 hook**。更糟的是，Claude 在忙時這些訊息會**隱形排進佇列**，bot 若一直沒回就直接消失。所以那些看似理所當然的做法（hook、讀 transcript）會默默漏掉你的訊息。
 
-loreroom 在 **plugin 源頭**攔截，就在訊息剛從 Telegram 進來的那一刻：
+LoreRoom 在 **plugin 源頭**攔截，就在訊息剛從 Telegram 進來的那一刻：
 
 - **進站**——Telegram 一送達就攔，**早於任何佇列**，**不管 Claude 在忙、當機、或永遠不回**。
 - **出站**——bot 一送出回覆就攔。
 
 兩邊都寫進一個小小的 spool 檔，再由 ingester 收進加密庫。**一則都不漏——即使你的 bot 沒回應。**（bot 在忙時卡住的訊息，會在它重啟、重新抓取時被補收。）
 
-不使用任何 Claude Code hook，所以 loreroom 不會干擾你其他的 Claude Code 工作。
+不使用任何 Claude Code hook，所以 LoreRoom 不會干擾你其他的 Claude Code 工作。
 
 ```
 你 ⇄ Telegram ──(patched plugin)──> spool ──(ingester)──> 加密 SQLite (SQLCipher + FTS5)
@@ -45,7 +45,7 @@ loreroom 在 **plugin 源頭**攔截，就在訊息剛從 Telegram 進來的那�
 
 ## 開始前你需要什麼
 
-loreroom 是幫一個**already 能用**的 Claude Code Telegram bot 加上記憶。所以你得先有那個 bot。**如果你已經能在 Telegram 上跟你的 bot 聊天，直接跳到 [安裝](#安裝)。** 還沒有的話，一次性設定（約 5 分鐘）：
+LoreRoom 是幫一個**already 能用**的 Claude Code Telegram bot 加上記憶。所以你得先有那個 bot。**如果你已經能在 Telegram 上跟你的 bot 聊天，直接跳到 [安裝](#安裝)。** 還沒有的話，一次性設定（約 5 分鐘）：
 
 **1. Node.js 20 以上。** 用 `node -v` 檢查；沒有就去 [nodejs.org](https://nodejs.org) 裝。
 
@@ -57,9 +57,9 @@ loreroom 是幫一個**already 能用**的 Claude Code Telegram bot 加上記憶
    3. 配對你的帳號：在 Telegram 隨便傳一則給你的 bot —— 它會回一個配對碼 —— 然後在 Claude Code 跑 `/telegram:access pair <配對碼>`。
    4. 啟動 bot session：`claude --channels plugin:telegram@claude-plugins-official`，然後在 Telegram 傳「hi」給 bot，它應該會回你。
 
-「hi」有回 = 你的 bot 能用了。接著用 loreroom 給它記憶 👇
+「hi」有回 = 你的 bot 能用了。接著用 LoreRoom 給它記憶 👇
 
-> **適用範圍：** loreroom 僅適用 Claude Code + 官方 Telegram plugin（不是通用 bot 框架）。它透過 **patch plugin** 來側錄——一行冪等指令，plugin 更新後重跑一次。見[為什麼要 patch plugin](#為什麼要-patch-plugin)。
+> **適用範圍：** LoreRoom 僅適用 Claude Code + 官方 Telegram plugin（不是通用 bot 框架）。它透過 **patch plugin** 來側錄——一行冪等指令，plugin 更新後重跑一次。見[為什麼要 patch plugin](#為什麼要-patch-plugin)。
 
 ## 安裝
 
@@ -105,7 +105,7 @@ bot 會搜自己的記憶回答你。你不用下任何指令——它會在背�
 
 ## 自包含
 
-loreroom 自己的東西全在**專案資料夾內**：
+LoreRoom 自己的東西全在**專案資料夾內**：
 
 - `config.json` —— 設定 + 加密金鑰（git 忽略、`chmod 600`、由 `init` 建立）
 - `data/memory.sqlite` —— 加密資料庫（git 忽略）
@@ -139,10 +139,10 @@ node dist/cli.js watch    # 持續 drain（可掛 launchd/cron）
 
 ## 安全與加密邊界
 
-- loreroom **完全不碰你的 Telegram bot token**——那是 plugin 的事，這裡沒有 token 可外洩。
+- LoreRoom **完全不碰你的 Telegram bot token**——那是 plugin 的事，這裡沒有 token 可外洩。
 - 唯一機敏是 `config.json` 裡的 **32-byte 金鑰**（git 忽略、`chmod 600`）——不進 repo、不被 log。
 - 資料庫**整檔加密**（SQLCipher / AES-256）。把 `data/memory.sqlite` 複製到別台機器、沒金鑰也打不開。
-- **這是本機 DB 的 at-rest 加密，不是 Telegram 端對端加密。** 不改變 Telegram 本身。解密只在 loreroom 本機行程內發生；金鑰不交給 Claude、不過網路。
+- **這是本機 DB 的 at-rest 加密，不是 Telegram 端對端加密。** 不改變 Telegram 本身。解密只在 LoreRoom 本機行程內發生；金鑰不交給 Claude、不過網路。
 - **防得住：** DB 檔被複製走 / 備份外洩。**防不住：** 已能讀你帳號檔案的人（金鑰與 DB 同放本機）。spool 在 drain 前短暫為明文。
 
 ## 限制

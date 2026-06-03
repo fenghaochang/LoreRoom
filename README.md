@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="./assets/logo.svg" alt="loreroom" width="92" height="92" />
+  <img src="./assets/logo.svg" alt="LoreRoom" width="92" height="92" />
 </p>
 
-<h1 align="center">loreroom</h1>
+<h1 align="center">LoreRoom</h1>
 
 <p align="center"><em>Your Claude Code Telegram bot — but it remembers.</em></p>
 
@@ -10,29 +10,29 @@
 
 **A private, encrypted room that remembers every conversation with your Claude Code Telegram bot — both sides — so it never forgets.**
 
-You chat with Claude Code from your phone through the official Telegram plugin. But every Claude Code session is amnesiac: restart it and the whole conversation is gone. loreroom captures both sides of that Telegram conversation into a single, whole-file-encrypted SQLite database and hands it back to Claude as searchable memory.
+You chat with Claude Code from your phone through the official Telegram plugin. But every Claude Code session is amnesiac: restart it and the whole conversation is gone. LoreRoom captures both sides of that Telegram conversation into a single, whole-file-encrypted SQLite database and hands it back to Claude as searchable memory.
 
 So you can ask your bot:
 
 > **You:** what did I ask you to do last night?
-> **Bot:** *(searches loreroom)* You asked me to fix the crawler retry logic and send you the diff…
+> **Bot:** *(searches LoreRoom)* You asked me to fix the crawler retry logic and send you the diff…
 
 Local-first. No cloud, no extra API keys, it never touches your bot token.
 
 ---
 
-## Why loreroom exists (and why it's reliable)
+## Why LoreRoom exists (and why it's reliable)
 
 The Claude Code Telegram plugin delivers your incoming messages to Claude through an internal channel push — **not** through any hook. Worse, when Claude is busy those messages **queue invisibly**, and if the bot never replies they're simply gone. So the obvious approaches (hooks, reading the transcript) silently lose your messages.
 
-loreroom captures at the **plugin's source**, the instant a message arrives from Telegram:
+LoreRoom captures at the **plugin's source**, the instant a message arrives from Telegram:
 
 - **Inbound** — the moment Telegram delivers it, *before* any queue, *regardless of whether Claude is busy, crashed, or never replies*.
 - **Outbound** — whenever the bot sends a reply.
 
 Both are written to a small spool file that an ingester drains into the encrypted database. **Nothing is lost — even when your bot is unresponsive.** (Messages that were stuck while the bot was busy get captured the moment it restarts and re-fetches them.)
 
-No Claude Code hooks are used, so loreroom never interferes with your other Claude Code work.
+No Claude Code hooks are used, so LoreRoom never interferes with your other Claude Code work.
 
 ```
 You ⇄ Telegram ──(patched plugin)──> spool ──(ingester)──> encrypted SQLite (SQLCipher + FTS5)
@@ -45,7 +45,7 @@ You ⇄ Telegram ──(patched plugin)──> spool ──(ingester)──> enc
 
 ## Before you start — what you need
 
-loreroom adds memory to an **existing** Claude Code Telegram bot. So you first need that bot working. **If you can already chat with your bot from Telegram, skip to [Install](#install).** Otherwise, set this up once (~5 minutes):
+LoreRoom adds memory to an **existing** Claude Code Telegram bot. So you first need that bot working. **If you can already chat with your bot from Telegram, skip to [Install](#install).** Otherwise, set this up once (~5 minutes):
 
 **1. Node.js 20 or newer.** Check with `node -v`. If missing, get it from [nodejs.org](https://nodejs.org).
 
@@ -57,9 +57,9 @@ loreroom adds memory to an **existing** Claude Code Telegram bot. So you first n
    3. Link your account: send your bot any message in Telegram — it replies with a pairing code — then run `/telegram:access pair <code>` in Claude Code.
    4. Start a bot session: `claude --channels plugin:telegram@claude-plugins-official`, then send your bot "hi" in Telegram. It should reply.
 
-Once "hi" gets a reply, your bot works. Now give it memory with loreroom 👇
+Once "hi" gets a reply, your bot works. Now give it memory with LoreRoom 👇
 
-> **Scope:** loreroom only works with Claude Code + the official Telegram plugin (it is not a general Telegram bot framework). It captures by **patching the plugin** — one idempotent command you re-run after plugin updates. See [Why patch the plugin](#why-patch-the-plugin).
+> **Scope:** LoreRoom only works with Claude Code + the official Telegram plugin (it is not a general Telegram bot framework). It captures by **patching the plugin** — one idempotent command you re-run after plugin updates. See [Why patch the plugin](#why-patch-the-plugin).
 
 ## Install
 
@@ -105,7 +105,7 @@ There is no hook and no on-disk record for inbound Telegram messages, so the onl
 
 ## Self-contained
 
-Everything loreroom owns lives **inside this project folder**:
+Everything LoreRoom owns lives **inside this project folder**:
 
 - `config.json` — your settings + encryption key (git-ignored, `chmod 600`, created by `init`)
 - `data/memory.sqlite` — the encrypted database (git-ignored)
@@ -139,10 +139,10 @@ Both return each hit with timestamp, sender, role, chat id, and text.
 
 ## Security & encryption boundary
 
-- loreroom **never handles your Telegram bot token** — that belongs to the plugin. There is no token to leak here.
+- LoreRoom **never handles your Telegram bot token** — that belongs to the plugin. There is no token to leak here.
 - The only secret is the **32-byte encryption key** in `config.json` (git-ignored, `chmod 600`) — never committed, never logged.
 - The database is **encrypted as a whole file** (SQLCipher / AES-256). Copying `data/memory.sqlite` to another machine is useless without the key.
-- **This is at-rest encryption of the local DB — NOT Telegram end-to-end encryption.** It changes nothing about Telegram itself. Decryption happens only locally, in loreroom's own processes; the key is never given to Claude and never crosses a network.
+- **This is at-rest encryption of the local DB — NOT Telegram end-to-end encryption.** It changes nothing about Telegram itself. Decryption happens only locally, in LoreRoom's own processes; the key is never given to Claude and never crosses a network.
 - **Protects against:** the DB file being copied off the machine / a backup leak. **Does not protect against:** someone who can already read your account's files on this machine (the key sits next to the DB by design). The spool is briefly plaintext until drained.
 
 ## Limitations
