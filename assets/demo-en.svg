@@ -1,0 +1,58 @@
+<svg width="430" height="600" viewBox="0 0 430 600" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,'Segoe UI',Roboto,'Helvetica Neue',system-ui,sans-serif">
+  <defs>
+    <clipPath id="r"><rect width="430" height="600" rx="24"/></clipPath>
+    <linearGradient id="av" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#2AABEE"/><stop offset="1" stop-color="#6C53E6"/></linearGradient>
+  </defs>
+  <g clip-path="url(#r)">
+    <rect width="430" height="600" fill="#0e1621"/>
+
+    <!-- header -->
+    <rect width="430" height="58" fill="#17212b"/>
+    <circle cx="38" cy="29" r="17" fill="url(#av)"/>
+    <text x="38" y="35" font-size="16" text-anchor="middle">🤖</text>
+    <text x="64" y="26" fill="#fff" font-size="15" font-weight="600">Assistant</text>
+    <text x="64" y="42" fill="#4aa8e6" font-size="12">bot</text>
+
+    <rect x="200" y="72" width="30" height="20" rx="10" fill="#00000055"/>
+    <text x="215" y="86" fill="#c2d0dc" font-size="12" text-anchor="middle">Today</text>
+
+    <!-- 1 out (2 lines) -->
+    <rect x="148" y="100" width="268" height="56" rx="14" fill="#2b5278"/>
+    <text x="162" y="122" fill="#fff" font-size="15">What did we decide about the</text>
+    <text x="162" y="144" fill="#fff" font-size="15">crawler retries last week?</text>
+
+    <!-- 2 in (3 lines) -->
+    <rect x="14" y="164" width="300" height="78" rx="14" fill="#1b2735"/>
+    <text x="28" y="186" fill="#fff" font-size="15">Last Tue 23:42 you decided: <tspan fill="#bfe6ff">cap</tspan></text>
+    <text x="28" y="208" fill="#bfe6ff" font-size="15">retries at 5, exponential backoff</text>
+    <text x="28" y="230" fill="#fff" font-size="15">— and I sent you the diff too.</text>
+
+    <!-- 3 out (1 line) -->
+    <rect x="178" y="250" width="238" height="36" rx="14" fill="#2b5278"/>
+    <text x="192" y="273" fill="#fff" font-size="15">Where did I save that API key?</text>
+
+    <!-- 4 in (2 lines) -->
+    <rect x="14" y="294" width="278" height="56" rx="14" fill="#1b2735"/>
+    <text x="28" y="316" fill="#fff" font-size="15">You pasted it on Jun 2 in the</text>
+    <text x="28" y="338" fill="#fff" font-size="15">“settings” message. Want it?</text>
+
+    <!-- 5 out (1 line) -->
+    <rect x="166" y="360" width="250" height="36" rx="14" fill="#2b5278"/>
+    <text x="180" y="383" fill="#fff" font-size="15">Nice — you remembered it all! 🙌</text>
+
+    <!-- 6 in (text + recall) -->
+    <rect x="14" y="406" width="336" height="78" rx="14" fill="#1b2735"/>
+    <text x="28" y="428" fill="#fff" font-size="15">Of course — it's all in LoreRoom 🔒</text>
+    <line x1="28" y1="443" x2="336" y2="443" stroke="#ffffff18"/>
+    <text x="28" y="465" fill="#8fd3ff" font-size="13">🧠 recalled by <tspan fill="#bfe6ff" font-weight="600">LoreRoom</tspan> · encrypted · both sides</text>
+
+    <!-- chips -->
+    <g font-size="12.5" fill="#cfe9fb" text-anchor="middle">
+      <rect x="20"  y="508" width="112" height="28" rx="14" fill="#2aabee1f" stroke="#2aabee4d"/><text x="76"  y="526">✅ Both sides</text>
+      <rect x="140" y="508" width="150" height="28" rx="14" fill="#2aabee1f" stroke="#2aabee4d"/><text x="215" y="526">🔁 Survives restarts</text>
+      <rect x="298" y="508" width="112" height="28" rx="14" fill="#2aabee1f" stroke="#2aabee4d"/><text x="354" y="526">🔒 Encrypted</text>
+    </g>
+
+    <text x="215" y="566" fill="#6b7e8f" font-size="13" text-anchor="middle">A fresh session would've forgotten — LoreRoom didn't.</text>
+  </g>
+</svg>
