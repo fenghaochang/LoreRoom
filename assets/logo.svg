@@ -1,0 +1,18 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="loreroom logo">
+  <defs>
+    <linearGradient id="lr-g" x1="64" y1="48" x2="448" y2="464" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2AABEE"/>
+      <stop offset="1" stop-color="#6C53E6"/>
+    </linearGradient>
+  </defs>
+
+  <!-- the "room": a rounded square that holds everything -->
+  <rect width="512" height="512" rx="120" fill="url(#lr-g)"/>
+
+  <!-- conversation bubble (the kept chat) -->
+  <path d="M150 128 H362 a54 54 0 0 1 54 54 V270 a54 54 0 0 1 -54 54 H252 l-58 52 a6 6 0 0 1 -10 -4.5 V324 H150 a54 54 0 0 1 -54 -54 V182 a54 54 0 0 1 54 -54 Z" fill="#ffffff"/>
+
+  <!-- keyhole = encrypted + kept -->
+  <circle cx="256" cy="208" r="34" fill="url(#lr-g)"/>
+  <path d="M238 224 H274 L266 300 a4 4 0 0 1 -4 3.6 H246 a4 4 0 0 1 -4 -3.6 Z" fill="url(#lr-g)"/>
+</svg>

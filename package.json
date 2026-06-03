@@ -1,0 +1,26 @@
+{
+  "name": "loreroom",
+  "version": "0.1.0",
+  "description": "Encrypted, bidirectional local memory for your Claude Code Telegram bot. Captures both sides at the plugin source, exposes time/keyword recall as MCP tools.",
+  "keywords": ["claude-code", "telegram", "mcp", "memory", "encrypted", "sqlcipher", "sqlite", "bot", "claude", "telegram-bot"],
+  "license": "MIT",
+  "type": "module",
+  "bin": { "loreroom": "dist/cli.js" },
+  "files": ["dist", "config.example.json", "README.md"],
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "mcp": "node dist/mcp-server.js",
+    "init": "node dist/cli.js init"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "better-sqlite3-multiple-ciphers": "^12.10.0",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "typescript": "^5.7.2",
+    "vitest": "^3.0.0"
+  }
+}

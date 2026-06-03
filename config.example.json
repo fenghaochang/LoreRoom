@@ -1,0 +1,9 @@
+{
+  "dbPath": "data/memory.sqlite",
+  "encryptionKey": "PUT-A-64-CHAR-HEX-KEY-HERE-OR-RUN-loreroom-init",
+  "capture": {
+    "chatAllow": [],
+    "chatDeny": [],
+    "skipPatterns": []
+  }
+}
