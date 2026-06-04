@@ -7,7 +7,7 @@
 <p align="center"><em>Your Claude Code Telegram bot — but it remembers.</em></p>
 
 <p align="center">
-  <img src="./assets/demo-en.svg" alt="LoreRoom recalling a past Telegram conversation" width="300" />
+  <img src="./assets/demo-en.png" alt="LoreRoom recalling a past Telegram conversation" width="300" />
 </p>
 
 > 中文版 → [README.zh-TW.md](./README.zh-TW.md)
