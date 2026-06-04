@@ -1,0 +1,13 @@
+# Never send local state or secrets into the build context.
+node_modules
+dist
+data
+config.json
+*.sqlite
+*.sqlite-*
+*.log
+.git
+.github
+.vscode
+assets
+tests
