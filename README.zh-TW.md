@@ -68,7 +68,7 @@ LoreRoom 是幫一個**already 能用**的 Claude Code Telegram bot 加上記憶
 ## 安裝
 
 ```bash
-git clone https://github.com/<you>/loreroom.git && cd loreroom
+git clone https://github.com/fenghaochang/LoreRoom.git && cd LoreRoom
 npm install
 npm run build
 node dist/cli.js init        # 建立 config.json + 新金鑰，並印出後續步驟

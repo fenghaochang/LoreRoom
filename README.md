@@ -68,7 +68,7 @@ Once "hi" gets a reply, your bot works. Now give it memory with LoreRoom 👇
 ## Install
 
 ```bash
-git clone https://github.com/<you>/loreroom.git && cd loreroom
+git clone https://github.com/fenghaochang/LoreRoom.git && cd LoreRoom
 npm install
 npm run build
 node dist/cli.js init        # creates config.json + a fresh encryption key, prints the next steps
