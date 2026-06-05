@@ -1,11 +1,11 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
-import { loadConfig } from "./config.js";
+import { loadOrInitConfig } from "./config.js";
 import { MemoryDb, type MessageRow } from "./db.js";
 import { ingestSpool } from "./ingest.js";
 
-const cfg = loadConfig();
+const cfg = loadOrInitConfig();
 const db = new MemoryDb(cfg.dbPath, cfg.encryptionKey);
 
 // Drain the plugin's spool (written at the Telegram source) into the encrypted DB.

@@ -1,7 +1,8 @@
 import { fileURLToPath } from "node:url";
 import { homedir } from "node:os";
 import { dirname, join, resolve, isAbsolute } from "node:path";
-import { readFileSync } from "node:fs";
+import { readFileSync, writeFileSync, existsSync, mkdirSync } from "node:fs";
+import { randomBytes } from "node:crypto";
 
 export interface CaptureConfig {
   chatAllow: string[];
@@ -53,5 +54,33 @@ export function loadConfigFrom(path: string): Config {
 }
 
 export function loadConfig(): Config {
+  return loadConfigFrom(CONFIG_PATH);
+}
+
+/**
+ * Create `config.json` with a fresh 32-byte key if it doesn't exist. Idempotent —
+ * never overwrites an existing config. Returns true if it created one.
+ */
+export function ensureConfig(): boolean {
+  if (existsSync(CONFIG_PATH)) return false;
+  mkdirSync(dirname(CONFIG_PATH), { recursive: true });
+  const cfg = {
+    dbPath: DEFAULT_DB_PATH,
+    encryptionKey: randomBytes(32).toString("hex"),
+    capture: { chatAllow: [], chatDeny: [], skipPatterns: [] },
+  };
+  writeFileSync(CONFIG_PATH, JSON.stringify(cfg, null, 2), { mode: 0o600 });
+  return true;
+}
+
+/**
+ * Load config, self-initializing it on first run if missing. Lets the MCP server
+ * start cleanly in a fresh environment (e.g. a directory's build sandbox) without
+ * a separate `init` step. Logs to stderr so it never pollutes the stdio protocol.
+ */
+export function loadOrInitConfig(): Config {
+  if (ensureConfig()) {
+    console.error(`[loreroom] created config with a fresh key: ${CONFIG_PATH}`);
+  }
   return loadConfigFrom(CONFIG_PATH);
 }

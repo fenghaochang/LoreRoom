@@ -1,23 +1,15 @@
-import { mkdirSync, existsSync, writeFileSync } from "node:fs";
-import { dirname, join } from "node:path";
-import { randomBytes } from "node:crypto";
-import { CONFIG_PATH, PROJECT_ROOT, DEFAULT_DB_PATH, loadConfig } from "./config.js";
+import { join } from "node:path";
+import { CONFIG_PATH, PROJECT_ROOT, loadConfig, ensureConfig } from "./config.js";
 import { MemoryDb } from "./db.js";
 import { ingestSpool } from "./ingest.js";
 
 function init() {
-  mkdirSync(dirname(CONFIG_PATH), { recursive: true });
-  if (existsSync(CONFIG_PATH)) {
-    console.log(`config 已存在，未覆寫：${CONFIG_PATH}`);
-  } else {
-    const cfg = {
-      dbPath: DEFAULT_DB_PATH,
-      encryptionKey: randomBytes(32).toString("hex"),
-      capture: { chatAllow: [], chatDeny: [], skipPatterns: [] },
-    };
-    writeFileSync(CONFIG_PATH, JSON.stringify(cfg, null, 2), { mode: 0o600 });
-    console.log(`已建立 config（含新金鑰，權限 600）：${CONFIG_PATH}`);
-  }
+  const created = ensureConfig();
+  console.log(
+    created
+      ? `已建立 config（含新金鑰，權限 600）：${CONFIG_PATH}`
+      : `config 已存在，未覆寫：${CONFIG_PATH}`,
+  );
 
   const nodeBin = process.execPath;
   const distDir = join(PROJECT_ROOT, "dist");
@@ -56,4 +48,7 @@ const cmd = process.argv[2];
 if (cmd === "init") init();
 else if (cmd === "ingest") ingestOnce();
 else if (cmd === "watch") watch();
-else { console.log("用法：loreroom <init|ingest|watch>"); process.exit(1); }
+// No subcommand (or explicit `serve`) → run the MCP server. This is how MCP
+// clients / directory build sandboxes launch it: `node dist/cli.js`.
+else if (cmd === undefined || cmd === "serve") await import("./mcp-server.js");
+else { console.log("用法：loreroom <serve|init|ingest|watch>"); process.exit(1); }
