@@ -10,6 +10,10 @@
   <img src="./assets/demo-en.png" alt="LoreRoom recalling a past Telegram conversation" width="300" />
 </p>
 
+<p align="center">
+  <a href="https://dev.to/_795b499841c010ff4ee9d/i-gave-my-claude-code-telegram-bot-a-memory-and-found-inbound-messages-skip-every-hook-19o7">📖 Read the story — why inbound Telegram messages skip every hook</a>
+</p>
+
 > 中文版 → [README.zh-TW.md](./README.zh-TW.md)
 
 **A private, encrypted room that remembers every conversation with your Claude Code Telegram bot — both sides — so it never forgets.**

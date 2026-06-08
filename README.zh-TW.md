@@ -10,6 +10,10 @@
   <img src="./assets/demo-zh.png" alt="LoreRoom 回憶過去的 Telegram 對話" width="340" />
 </p>
 
+<p align="center">
+  <a href="https://dev.to/_795b499841c010ff4ee9d/i-gave-my-claude-code-telegram-bot-a-memory-and-found-inbound-messages-skip-every-hook-19o7">📖 開發故事 — 為什麼進站 Telegram 訊息不觸發任何 hook（英文）</a>
+</p>
+
 > English → [README.md](./README.md)
 
 **一個私密、加密的「房間」，記得你跟 Claude Code Telegram bot 的每一段對話——雙向都記——讓它永不失憶。**
