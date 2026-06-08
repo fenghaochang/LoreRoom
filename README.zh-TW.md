@@ -7,6 +7,12 @@
 <p align="center"><em>你的 Claude Code Telegram bot——但它記得住。</em></p>
 
 <p align="center">
+  <a href="https://glama.ai/mcp/servers/fenghaochang/LoreRoom">
+    <img src="https://glama.ai/mcp/servers/fenghaochang/LoreRoom/badges/score.svg" alt="LoreRoom MCP server score on Glama" />
+  </a>
+</p>
+
+<p align="center">
   <img src="./assets/demo-zh.png" alt="LoreRoom 回憶過去的 Telegram 對話" width="340" />
 </p>
 

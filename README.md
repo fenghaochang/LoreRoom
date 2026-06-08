@@ -7,6 +7,12 @@
 <p align="center"><em>Your Claude Code Telegram bot — but it remembers.</em></p>
 
 <p align="center">
+  <a href="https://glama.ai/mcp/servers/fenghaochang/LoreRoom">
+    <img src="https://glama.ai/mcp/servers/fenghaochang/LoreRoom/badges/score.svg" alt="LoreRoom MCP server score on Glama" />
+  </a>
+</p>
+
+<p align="center">
   <img src="./assets/demo-en.png" alt="LoreRoom recalling a past Telegram conversation" width="300" />
 </p>
 
